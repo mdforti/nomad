@@ -310,8 +310,9 @@ class North(NomadSettings):
     windows = Field(
         True, description='Enable windows OS hacks.')
 
+    root = os.path.dirname(__file__)
     tools: Union[str, Dict[str, NorthTool]] = Field(
-        'dependencies/nomad-remote-tools-hub/tools.json',
+        os.path.join(root, '..', 'dependencies/nomad-remote-tools-hub/tools.json'), 
         description='The available north tools. Either the tools definitions as dict or a path to a .json file.')
 
     hub_service_api_token: str = Field('secret-token', description='''
