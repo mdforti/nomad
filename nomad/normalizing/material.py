@@ -377,6 +377,10 @@ class MaterialNormalizer():
             result.space_group_number = self.repr_symmetry.space_group_number
             result.space_group_symbol = self.repr_symmetry.international_short_symbol
             result.point_group = self.repr_symmetry.point_group
+# SUGGESTED BY ALVIN
+            if hasattr(self.repr_symmetry, 'structure_name'):
+                result.structure_name = self.repr_symmetry.structure_name
+
             filled = True
 
         # Fill in prototype information. SystemNormalizer has cached many of
