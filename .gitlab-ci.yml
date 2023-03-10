@@ -79,7 +79,7 @@ python linting:
   script:
     - pycodestyle --config=pycodestyle.ini nomad tests
     - pylint --rcfile=.pylintrc nomad tests
-    - mypy --ignore-missing-imports --follow-imports=silent --no-strict-optional nomad tests
+    - mypy nomad tests
   rules:
     - if: $CI_COMMIT_TAG
       when: never
@@ -102,7 +102,7 @@ gui linting:
 
 check python dependencies:
   stage: test
-  image: python:3.7
+  image: python:3.9
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
     GIT_SUBMODULE_UPDATE_FLAGS: --jobs 4
@@ -168,7 +168,7 @@ python tests:
     - curl http://elastic:9200/_cat/health
     - cd /app
   script:
-    - python -m pytest --cov=nomad --cov-report=xml -sv tests
+    - python -m pytest --cov=nomad --cov-report term --cov-report xml:coverage.xml --cov-config=.coveragerc -sv tests
   after_script:
     - cd /app
     - cp coverage.xml $CI_PROJECT_DIR

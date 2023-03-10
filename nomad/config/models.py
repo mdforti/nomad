@@ -169,7 +169,7 @@ class Meta(NomadSettings):
     maintainer_email = Field(
         'markus.scheidgen@physik.hu-berlin.de',
         description='Email of the NOMAD deployment maintainer.')
-    beta: dict = Field(None, description='''
+    beta: dict = Field({}, description='''
         Additional data that describes how the deployment is labeled as a beta-version in the UI.
     ''')
 
@@ -262,16 +262,15 @@ class NORTH(NomadSettings):
         if not isinstance(v, str):
             return v
 
-        # interpret as file
+        # interpret v as file path
         path = v
         if not os.path.exists(path):
+            # try to interprete path as relative to project root
             root_path = os.path.join(os.path.dirname(__file__), '../..')
             path = os.path.join(root_path, v)
 
         with open(path, 'rt') as f:
-            v = json.load(f)
-
-        return v
+            return json.load(f)
 
 
 class RabbitMQ(NomadSettings):

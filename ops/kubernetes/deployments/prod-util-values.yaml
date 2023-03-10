@@ -1,4 +1,5 @@
 version:
+  label: util
   isBeta: true
   usesBetaData: false
   officialUrl: "https://nomad-lab.eu/prod/v1/gui"
@@ -25,6 +26,9 @@ app:
   replicas: 1
   worker: 1
   nomadNodeType: "public"
+
+celery:
+  timeout: 7200
 
 worker:
   replicas: 1

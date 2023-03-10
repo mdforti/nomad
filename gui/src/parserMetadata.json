@@ -23,7 +23,7 @@
     "parserSpecific": "",
     "preamble": "",
     "status": "production",
-    "tableOfFiles": "|Input Filename| Description|\n|--- | --- |\n|`*.out` | **Mainfile:** a plain text file w/ **user-defined** name|\n|`*.files`|plain text; user-defined filenames |\n|`*.in`| plain text, input parameters|\n|`*_o_DDB`|binary file, Derivative DataBases of total energy|\n|`*_o_DEN`|binary file, charge density|\n|`*_o_EIG`|text file, eigenvalues|\n|`*_o_WFK`|binary file, wavefunction|\n|`log` | plain text, redirection of screen output (`stdout`)|\n"
+    "tableOfFiles": "|Input Filename| Description|\n|--- | --- |\n|`*.*o*` | **Mainfile:** a plain text file w/ **user-defined** name|\n|`*.files`| plain text; user-defined filenames |\n|`*.*i*`| plain text, input parameters|\n|`*_o_DDB`| netcdf binary file, Derivative DataBases of total energy|\n|`*_o_DEN`| netcdf binary file, charge density|\n|`*_o_EIG`| text file, eigenvalues|\n|`*_o_WFK`| netcdf binary file, wavefunction|\n|`*o_SCR`| netcdf binary file, RPA inverse dielectric screening |\n|`*o_SIGRES`| netcdf binary file, GW self-energy correction |\n|`log` | plain text, redirection of screen output (`stdout`)|\n"
   },
   "AFLOW": {
     "codeCategory": "Workflow manager",
@@ -101,6 +101,19 @@
     "preamble": "",
     "status": "production",
     "tableOfFiles": "|Input Filename| Description|\n|--- | --- |\n|`*materials.json` | **Mainfile:** a json file containing system info|\n|`*.json` | json files containing workflow results|\n"
+  },
+  "BOPfox": {
+    "codeCategory": "Atomistic code",
+    "codeLabel": "BOPfox",
+    "codeLabelStyle": "Capitals: B,O,P",
+    "codeName": "bopfox",
+    "codeUrl": "http://bopfox.de/",
+    "parserDirName": "dependencies/parsers/atomistic/atomisticparsers/bopfox/",
+    "parserGitUrl": "https://github.com/nomad-coe/atomistic-parsers.git",
+    "parserSpecific": "",
+    "preamble": "",
+    "status": "production",
+    "tableOfFiles": ""
   },
   "BigDFT": {
     "codeCategory": "Atomistic code",
@@ -484,7 +497,7 @@
     "codeUrl": "https://www.nexusformat.org/",
     "parserDirName": "dependencies/parsers/nexus/",
     "parserGitUrl": "https://github.com/nomad-coe/nomad-parser-nexus.git",
-    "preamble": "This is not a real parser, but an example template on how to write one. You can fork this repository to create actual parsers.\n\n## Get started\n\nYou should create a virtual environment. This is optional, but highly recommended as\nthe required nomad-lab pypi package requires many dependencies with specific versions\nthat might conflict with other libraries that you have installed. This was tested\nwith Python 3.7.\n\n```\npip install virtualenv\nvirtualenv -p `which python3` .pyenv\nsource .pyenv/bin/activate\n```\n\nSimply install our pypi package with pip:\n```\npip install --upgrade pip\npip install nomad-lab\n```\n\nClone this project (or fork and then clone the fork). Go into the cloned directly and\ndirectly run the parser from there:\n```\ngit clone https://github.com/nomad-coe/nomad-parser-nexus.git parser-nexus\ncd parser-nexus\npython -m nexusutils tests/data/nexus.out\n```\n\nThere are also a basic test framework written in [pytest](https://docs.pytest.org/en/stable/).\nInstall the remaining dev dependencies and run the tests with:\n```\npip install -r requirements.txt\npytest -sv tests\n```\n\n## Next steps\n\nOur documentation provides several resources that might be interesting:\n- [How to write a parser](https://nomad-lab.eu/prod/rae/docs/parser.html). Provides\n  a more detailed tutorial on how to write a parser.\n- [Introduction to the NOMAD Metainfo](https://nomad-lab.eu/prod/rae/docs/metainfo.html).\n  This explains how NOMAD data schema and can be extended and used within your parser.\n\nTo get you parser included in NOMAD or ask further questions, you can:\n- Use our forums at [matsci.org](https://matsci.org/c/nomad/32)\n- Open an issue on the [nexus-parser GitHub project](https://github.com/nomad-coe/nomad-parser-nexus/issues)\n- Write to [support@nomad-lab.eu](mailto:support@nomad-lab.eu)\n\n**Note!** The rest of this README.md is the usual text that applies to all NOMAD parsers.\n",
+    "preamble": "This is not a real parser, but an example template on how to write one. You can fork this repository to create actual parsers.\n\n## Get started\n\nYou should create a virtual environment. This is optional, but highly recommended as\nthe required nomad-lab pypi package requires many dependencies with specific versions\nthat might conflict with other libraries that you have installed. This was tested\nwith Python 3.9.\n\n```\npip install virtualenv\nvirtualenv -p `which python3` .pyenv\nsource .pyenv/bin/activate\n```\n\nSimply install our pypi package with pip:\n```\npip install --upgrade pip\npip install nomad-lab\n```\n\nClone this project (or fork and then clone the fork). Go into the cloned directly and\ndirectly run the parser from there:\n```\ngit clone https://github.com/nomad-coe/nomad-parser-nexus.git parser-nexus\ncd parser-nexus\npython -m nexusutils tests/data/nexus.out\n```\n\nThere are also a basic test framework written in [pytest](https://docs.pytest.org/en/stable/).\nInstall the remaining dev dependencies and run the tests with:\n```\npip install -r requirements.txt\npytest -sv tests\n```\n\n## Next steps\n\nOur documentation provides several resources that might be interesting:\n- [How to write a parser](https://nomad-lab.eu/prod/rae/docs/parser.html). Provides\n  a more detailed tutorial on how to write a parser.\n- [Introduction to the NOMAD Metainfo](https://nomad-lab.eu/prod/rae/docs/metainfo.html).\n  This explains how NOMAD data schema and can be extended and used within your parser.\n\nTo get you parser included in NOMAD or ask further questions, you can:\n- Use our forums at [matsci.org](https://matsci.org/c/nomad/32)\n- Open an issue on the [nexus-parser GitHub project](https://github.com/nomad-coe/nomad-parser-nexus/issues)\n- Write to [support@nomad-lab.eu](mailto:support@nomad-lab.eu)\n\n**Note!** The rest of this README.md is the usual text that applies to all NOMAD parsers.\n",
     "status": "production",
     "tableOfFiles": "|Input Filename| Description|\n|--- | --- |\n|`nexus.out` | **Mainfile** in NEXUS specific plain-text |\n"
   },
@@ -830,5 +843,18 @@
     "preamble": "",
     "status": "production",
     "tableOfFiles": "| Input Filename | Description |\n| --- | --- |\n| `*.hdf5` | **Mainfile:** hdf5 file containing all i/o parameters w/ arbitrary name |\n| `*.in` | input text file containing [general], [atoms], and [QMC] input parameters |\n| `epsk` | plain text, discrete bath levels |\n| `Vk` | plain text, hybridizations |\n| `w2d.log` | output log error file |\n"
+  },
+  "xTB": {
+    "codeCategory": "Atomistic code",
+    "codeLabel": "xTB",
+    "codeLabelStyle": "Capitals: TB",
+    "codeName": "xtb",
+    "codeUrl": "https://www.chemie.uni-bonn.de/pctc/mulliken-center/software/xtb/",
+    "parserDirName": "dependencies/parsers/atomistic/atomisticparsers/gromacs//xtb/",
+    "parserGitUrl": "https://github.com/nomad-coe/atomistic-parsers.git",
+    "parserSpecific": "",
+    "preamble": "",
+    "status": "production",
+    "tableOfFiles": "|Input Filename| Description|\n|--- | --- |\n|`*.out` | **Mainfile:** a plain text file w/ **user-defined** name|\n|`*.coord`|plain text; structure file|\n|`*.xyz`| plain text, structure file|\n|`*xtbopt.log`|plain text, trajectory file of geometry optimization|\n|`*xtb.trj`|plain text, trajectory of molecular dynamics|\n|`*xtbtopo.mol`|plain text, topology file|\n|`*xtbrestart`|binary file, restart file|\n|`charges` |plain text, output charges|\n"
   }
 }

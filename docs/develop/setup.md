@@ -59,31 +59,25 @@ git submodule update --init
 You should work in a Python virtual environment.
 
 #### pyenv
-The nomad code currently targets python 3.7. If your host machine has an older version installed,
-you can use [pyenv](https://github.com/pyenv/pyenv) to use python 3.7 in parallel to your
-system's python. Never the less, we have good experience with 3.8 and 3.9 users as well
-and everything might work with newer versions as well.
+The nomad code currently targets python 3.9. If your host machine has an older version installed,
+you can use [pyenv](https://github.com/pyenv/pyenv) to use python 3.9 in parallel to your
+system's python.
 
 #### virtualenv
-We strongly recommend to use *virtualenv* to create a virtual environment. It allows you
+Create a virtual environment. It allows you
 to keep nomad and its dependencies separate from your system's python installation.
-Make sure that the virtual environment is based on Python 3.
+Make sure that the virtual environment is based on Python 3.8 or higher (ideally Python 3.9). Use the built-in `venv` or (virtualenv)[https://pypi.org/project/virtualenv/] alternatively.
 
-To install *virtualenv*, create an environment, and activate the environment, use:
 ```
-pip install virtualenv
-virtualenv -p `which python3` .pyenv
+python3 -m venv .pyenv
 source .pyenv/bin/activate
 ```
-
-If you use *pyenv* (or similar solutions) make sure that the `-p` arguments evaluates
-to the `python` binary with the desired version.
 
 #### conda
 If you are a conda user, there is an equivalent, but you have to install pip and the
 right python version while creating the environment.
 ```sh
-conda create --name nomad_env pip python=3.7
+conda create --name nomad_env pip python=3.9
 conda activate nomad_env
 ```
 
@@ -503,8 +497,16 @@ for all major platforms [here](https://code.visualstudio.com/download).
 You should launch and run vscode directly from the projects root directory. The source
 code already contains settings for vscode in the `.vscode` directory. The settings
 contain the same setup for stylechecks, linter, etc. that is also used in our CI/CD
-pipelines. If you want to augment this with your own settings, you can have a
-`.vscode/settings.local.json`. This file is in .gitignore and only belongs to you.
+pipelines. 
+In order to ractually use the these features you have to make sure that they are enabled 
+in your own User settings:
+```
+    "python.linting.pycodestyleEnabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.testing.pytestEnabled": true,
+```
+
 
 The settings also include a few launch configuration for vscode's debugger. You can create
 your own launch configs in `.vscode/launch.json` (also in .gitignore).
