@@ -378,9 +378,13 @@ class MaterialNormalizer():
             result.space_group_symbol = self.repr_symmetry.international_short_symbol
             result.point_group = self.repr_symmetry.point_group
 # SUGGESTED BY ALVIN
-            if hasattr(self.repr_symmetry, 'structure_name'):
-                result.structure_name = self.repr_symmetry.structure_name
-
+#            if hasattr(self.repr_symmetry, 'structure_name'):
+# but for some reason the self.repr_symmetry comes from somewhere else (see nomad/normalizing/normalizer.py:111)
+#                result.structure_name = self.repr_symmetry.structure_name
+#            else:
+#                result.structure_name = 'repr_symmetry does not have structure name at this point'
+            if hasattr(self.entry_archive.results.material.symmetry, 'structure_name'):
+                result.structure_name = self.entry_archive.results.material.symmetry.structure_name
             filled = True
 
         # Fill in prototype information. SystemNormalizer has cached many of

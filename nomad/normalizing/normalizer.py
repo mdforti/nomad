@@ -108,6 +108,7 @@ class SystemBasedNormalizer(Normalizer, metaclass=ABCMeta):
 
         # If no frame sequences detected, try to find valid scc by looping all
         # available in reverse order until a valid one is found.
+        # MDF somehow the symmetry is transferred from system_ref and not from results.material.symmetry!
         if system is None:
             try:
                 sccs = self.section_run.calculation
