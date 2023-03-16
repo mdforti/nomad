@@ -161,6 +161,7 @@ structure_name_map = {
     'Face&ndash;Centered Cubic (Cu, A1) Structure': 'fcc',
     'Diamond (A4) Structure': 'diamond',
     'Body&ndash;Centered Cubic (W, A2) Structure': 'bcc',
+    'R' : 'R' # Laurie
 }
 
 
