@@ -150,7 +150,7 @@ def cell_from_ase_atoms(atoms: Atoms) -> Cell:
     cell.volume = volume
     mass = atomutils.get_summed_atomic_mass(atoms.get_atomic_numbers()) * ureg.kg
     cell.mass_density = None if volume == 0 else mass / volume
-    number_of_atoms = atoms.get_number_of_atoms()
+    number_of_atoms = atoms.get_global_number_of_atoms()
     cell.atomic_density = None if volume == 0 else number_of_atoms / volume
 
     return cell
