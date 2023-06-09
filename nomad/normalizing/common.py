@@ -223,9 +223,9 @@ def ase_atoms_from_nomad_atoms(system: NOMADAtoms) -> Atoms:
         ase.Atoms instance.
     '''
     return Atoms(
-        positions=system.positions.to(ureg.angstrom),
+        positions=system.positions.to(ureg.angstrom)._magnitude,
         numbers=system.species,
-        cell=system.lattice_vectors.to(ureg.angstrom),
+        cell=system.lattice_vectors.to(ureg.angstrom)._magnitude,
         pbc=system.periodic
     )
 
