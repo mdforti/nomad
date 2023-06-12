@@ -1,6 +1,6 @@
 version: "3"
 # build command :
-# DOCKER_BUILDKIT=1 docker build --build-arg BUILDKIT_CONTEXT_KEEP_GIT_DIR=1 -t nomad-mdfort:develop https://github.com/mdforti/nomad.git#nomad-icams
+# DOCKER_BUILDKIT=1 docker compose build --build-arg BUILDKIT_CONTEXT_KEEP_GIT_DIR=1 
 services:
   # broker for celery
   rabbitmq:
