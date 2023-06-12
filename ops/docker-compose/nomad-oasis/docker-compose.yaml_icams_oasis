@@ -5,7 +5,7 @@ services:
   # broker for celery
   rabbitmq:
     restart: unless-stopped
-    image: rabbitmq:3.9.13
+    image: rabbitmq:3.11.5
     container_name: nomad_oasis_rabbitmq
     environment:
       - RABBITMQ_ERLANG_COOKIE=SWQOKODSQALRPCLNMEQG
@@ -99,7 +99,6 @@ services:
   # nomad app (api + proxy)
   app:
     restart: unless-stopped
-      #image: github.com_mdforti_nomad.git:check_structure_name
     build: https://github.com/mdforti/nomad.git#nomad-icams 
     image: nomad-icams:develop
       # gitlab-registry.mpcdf.mpg.de/nomad-lab/nomad-fair:develop
@@ -111,6 +110,7 @@ services:
       NOMAD_RABBITMQ_HOST: rabbitmq
       NOMAD_ELASTIC_HOST: elastic
       NOMAD_MONGO_HOST: mongo
+      NOMAD_NORTH_HUB_HOST: north
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -118,6 +118,9 @@ services:
         condition: service_healthy
       mongo:
         condition: service_healthy
+      north:
+        condition: service_started
+
     volumes:
       - ./configs/nomad.yaml:/app/nomad.yaml
         #- /mnt/ceph/:/app/.volumes/fs
@@ -154,15 +157,12 @@ services:
       NOMAD_RABBITMQ_HOST: rabbitmq
       NOMAD_ELASTIC_HOST: elastic
       NOMAD_MONGO_HOST: mongo
-    depends_on:
-      app:
-        condition: service_started
     volumes:
       - ./configs/nomad.yaml:/app/nomad.yaml
       - ./.volumes/fs:/app/.volumes/fs
         #- /mnt/ceph/:/app/.volumes/fs
       - /var/run/docker.sock:/var/run/docker.sock
-    user: '1000:948'
+    user: '1000:991'
     command: python -m nomad.cli admin run hub
     healthcheck:
       test:
