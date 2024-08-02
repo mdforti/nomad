@@ -393,7 +393,7 @@ export default function About() {
     <Grid className={classes.container} container spacing={2}>
       <Grid item xs={12}>
         <Markdown>{`
-        # **NOMAD** &ndash; Manage and Publish Materials Data
+        # **NOMAD - ICAMS** &ndash; Manage and Publish Materials Data
 
         This is the *graphical user interface* (GUI) of NOMAD. It allows you to **search,
         access, and download all NOMAD data** in its
