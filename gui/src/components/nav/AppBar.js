@@ -113,6 +113,7 @@ export default function AppBar() {
       <div className={styles.logo}>
         <Link href={guiBase}>
           <img alt="The NOMAD logo" className={styles.logoImg} src={`${guiBase}/${oasis ? 'nomad-oasis.png' : 'nomad.png'}`}></img>
+          <img alt="The ICAMS logo" className={styles.logoImg} src={`${guiBase}/${oasis ? 'ICAMS.fh9.png' : 'nomad.png'}`}></img>
         </Link>
       </div>
       <div className={styles.navigation}>
